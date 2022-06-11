@@ -7,14 +7,16 @@ import {
   SearchCircleIcon,
 } from '@heroicons/react/outline';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 function TweetBox() {
   const [input, setInput] = useState<string>('');
+  const { data: session } = useSession();
   return (
     <div className='flex space-x-2 p-5'>
       <div className='h-14 w-14 relative mt-4'>
         <Image
-          src='https://links.papareact.com/gll'
+          src={session?.user?.image || 'https://links.papareact.com/gll'}
           objectFit='cover'
           layout='fill'
           alt='User Name'
@@ -39,7 +41,7 @@ function TweetBox() {
               <LocationMarkerIcon className='h-5 w-5' />
             </div>
             <button
-              disabled={!input}
+              disabled={!input || !session}
               className='bg-twitter px-5 py-2 font-bold text-white rounded-full disabled:opacity-40 disabled:cursor-not-allowed'
             >
               Tweet
