@@ -35,7 +35,7 @@ function Tweet({ tweet }: Props) {
             alt={tweet.username}
           />
         </div>
-        <div>
+        <div className='flex flex-col flex-1'>
           <div className='flex items-center space-x-1'>
             <p className='mr-1'>{tweet.username}</p>
             <p className='hidden text-sm text-gray-500 sm:inline'>
