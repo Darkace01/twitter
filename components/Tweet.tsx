@@ -88,7 +88,7 @@ function Tweet({ tweet }: Props) {
           </div>
           <p className='pt-1'>{tweet.text}</p>
           {tweet.image && (
-            <div className='relative m-5 ml-0 mb-1 max-h-60 min-h-[10rem] w-full'>
+            <div className='relative m-5 ml-0 mb-1 max-h-60 min-h-[10rem] lg:min-h-[15rem] w-full'>
               <Image
                 src={tweet.image}
                 objectFit='cover'
