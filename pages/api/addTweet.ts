@@ -30,7 +30,7 @@ export default async function handler(
     const result = await fetch(apiEndpoint, {
         headers: {
             'content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SANITY_API_KEY}`
+            'Authorization': `Bearer ${process.env.SANITY_API_TOKEN}`
         },
         body: JSON.stringify(mutations),
         method: 'POST'

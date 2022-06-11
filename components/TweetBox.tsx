@@ -6,10 +6,16 @@ import {
   PhotographIcon,
   SearchCircleIcon,
 } from '@heroicons/react/outline';
-import { useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import { Tweet, TweetBody } from '../typings';
+import { fetchTweets } from '../utils/fetchTweets';
+import toast from 'react-hot-toast';
 
-function TweetBox() {
+interface Props {
+  setTweets: Dispatch<SetStateAction<Tweet[]>>;
+}
+function TweetBox({ setTweets }: Props) {
   const [input, setInput] = useState<string>('');
   const [image, setImage] = useState<string>('');
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -23,6 +29,37 @@ function TweetBox() {
     if (!imageInputRef.current?.value) return;
     setImage(imageInputRef.current.value);
     imageInputRef.current.value = '';
+    setImageUrlBoxIsOpen(false);
+  };
+  const postTweet = async () => {
+    const tweetBody: TweetBody = {
+      text: input,
+      username: session?.user?.name || 'Unknown User',
+      profileImg: session?.user?.image || 'https://links.papareact.com/gll',
+      image,
+    };
+    const result = await fetch('/api/addTweet', {
+      body: JSON.stringify(tweetBody),
+      method: 'POST',
+    });
+
+    const json = await result.json();
+
+    const newTweets = await fetchTweets();
+    setTweets(newTweets);
+
+    toast('Tweet Posted', {
+      icon: '🕊️',
+    });
+    return json;
+  };
+  const handleSubmit = (
+    e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
+    e.preventDefault();
+    postTweet();
+    setInput('');
+    setImage('');
     setImageUrlBoxIsOpen(false);
   };
   return (
@@ -57,6 +94,7 @@ function TweetBox() {
               <LocationMarkerIcon className='h-5 w-5' />
             </div>
             <button
+              onClick={handleSubmit}
               disabled={!input || !session}
               className='bg-twitter px-5 py-2 font-bold text-white rounded-full disabled:opacity-40 disabled:cursor-not-allowed'
             >
