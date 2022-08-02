@@ -709,10 +709,10 @@ nanoid@^3.1.30, nanoid@^3.3.4:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
-next-auth@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.4.0.tgz#2275ac38798beb45fa80cba3d79e03549b50eb34"
-  integrity sha512-Lz5ytnkP4OfTUsknhpZVH9eTLaLOZX/UEe6OQESMaZSTBr9cVc99G4kEPG83KrwKMe7VVb5DfDWH0rlod7wMzA==
+next-auth@^4.10.3:
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.10.3.tgz#0a952dd5004fd2ac2ba414c990922cf9b33951a3"
+  integrity sha512-7zc4aXYc/EEln7Pkcsn21V1IevaTZsMLJwapfbnKA4+JY0+jFzWbt5p/ljugesGIrN4VOZhpZIw50EaFZyghJQ==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@panva/hkdf" "^1.0.1"
